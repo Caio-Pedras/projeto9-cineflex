@@ -1,0 +1,223 @@
+*{
+    padding: 0; 
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+}
+header{
+    width: 100%;
+    background-color: #C3CFD9;
+    color: #E8833A;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    Font-size: 25px;
+    padding: 20px 0;
+    font-weight: 400;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.container{
+    margin-top: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 150px;
+}
+h2{
+    font-size: 24px;
+    color: #293845;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.movieList{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 ;
+}
+.movie{
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 4px 2px #0000001A;
+    border-radius: 4px;
+    width: 160px;
+    height: 230px;
+    position: relative;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+.movie img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 210px;
+}
+footer{
+    border-top: 1px solid #9EADBA;
+    background-color: #DFE6ED;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+}
+footer .movie{
+    max-height: 100%;
+    max-width: 70px;
+    margin: auto 0;
+}
+footer .movie img{
+    max-height: 90px;
+    max-width: 60px;
+}
+footer .text {
+    margin-left: 10px;
+}
+.movieDay{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding: 0 25px;
+}
+.date {
+    margin-bottom: 10px;
+}
+.movieTime{
+    background-color: #E8833A;
+    color: #FFFFFF;
+    width: 80px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+.times{
+    width: 100%;
+    display:flex;
+}
+a{
+text-decoration: none;
+color: inherit;
+}
+
+.loading{
+    animation: is-rotating 1s infinite;
+    width: 100px;
+    height: 100px;
+    border: 10px solid gray;
+    border-top-color: #E8833A;
+    border-radius: 50%;
+    position: fixed;
+    left: 40%;
+    top: 45%;
+}
+.seats{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    padding-right: 10px;
+    max-width: 400px;
+    
+}
+.circle{
+    border: 1px solid #808F9D;
+    background-color: #C3CFD9;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 400;
+
+}
+.green {
+    background-color: #8DD7CF; 
+    border: 1px solid #1AAE9E;
+}
+.yellow{
+    border: 1px solid #F7C52B;
+    background-color: #FBE192;
+
+}
+.captions{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    max-width: 500px;
+    margin-top: 10px;
+    color: #4E5A65;
+    margin-bottom: 40px;
+}
+.caption .circle{
+    margin-bottom: 8px;
+    margin-right: 0px;
+}
+.caption{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    margin-right: 10px;
+}
+.buyInfo{
+    padding: 0 25px;
+    font-size: 18px;
+    font-weight: 400;
+    width: 100%;
+    max-width: 500px;
+}
+.buyInfo input{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #D4D4D4;
+    padding: 0 20px;
+    font-size: 18px;
+}
+.buyInput {
+    margin-bottom: 20px;
+}
+.buyInput p {
+    margin-bottom: 10px;
+}
+.buySeat{
+    color:#FFFFFF;
+    font-size: 18px;
+    background-color: #E8833A;
+    border-radius: 5px;
+    height: 50px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes is-rotating { 
+    to {
+        transform: rotate(1turn);
+    }
+}
