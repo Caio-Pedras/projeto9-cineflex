@@ -13,51 +13,58 @@ header{
     color: #E8833A;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    Font-size: 25px;
+    Font-size: 44px;
     padding: 20px 0;
     font-weight: 400;
     position: fixed;
     top: 0;
     left: 0;
+    height: 80px;
     z-index: 1;
 }
 .container{
-    margin-top: 130px;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 150px;
+    margin-bottom: 140px;
+    padding: 0 20px;
 }
 h2{
-    font-size: 24px;
+    font-size: 26px;
     color: #293845;
     font-family: 'Roboto', sans-serif;
     text-align: center;
+    margin-top: 30px;
     margin-bottom: 40px;
 }
 .movieList{
     display: flex;
     flex-wrap: wrap;
     padding: 0 ;
+    column-gap: 30px;
+    align-items: center;
+    justify-content: center;
 }
 .movie{
     background-color: #FFFFFF;
     box-shadow: 0px 2px 4px 2px #0000001A;
-    border-radius: 4px;
-    width: 160px;
+    border-radius: 10px;
+    width: 150px;
     height: 230px;
     position: relative;
-    margin-bottom: 10px;
-    margin-left: 30px;
+    margin-bottom: 20px;
+    
 }
 .movie img{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 140px;
-    height: 210px;
+    width: 130px;
+    height: 200px;
+    border-radius: 10px;
 }
 footer{
     border-top: 1px solid #9EADBA;
@@ -74,6 +81,7 @@ footer{
     font-size: 20px;
     font-weight: 400;
     text-align: left;
+    color: #293845;
 }
 footer .movie{
     max-height: 100%;
@@ -95,7 +103,7 @@ footer .text {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
-    padding: 0 25px;
+    /* padding: 0 25px; */
 }
 .date {
     margin-bottom: 10px;
@@ -127,17 +135,13 @@ color: inherit;
     border: 10px solid gray;
     border-top-color: #E8833A;
     border-radius: 50%;
-    position: fixed;
-    left: 40%;
-    top: 45%;
+    margin-top: 38vh;
 }
 .seats{
     display: flex;
     flex-wrap: wrap;
-    padding-left: 20px;
-    padding-right: 10px;
-    max-width: 400px;
-    
+    width: 350px;
+    column-gap: 10px;
 }
 .circle{
     border: 1px solid #808F9D;
@@ -148,7 +152,6 @@ color: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
     margin-bottom: 20px;
     font-family: 'Roboto', sans-serif;
     color: #000000;
@@ -186,7 +189,7 @@ color: inherit;
     margin-right: 10px;
 }
 .buyInfo{
-    padding: 0 25px;
+    /* padding: 0 25px; */
     font-size: 18px;
     font-weight: 400;
     width: 100%;
@@ -215,6 +218,8 @@ color: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 @keyframes is-rotating { 
     to {

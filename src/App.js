@@ -4,24 +4,25 @@ import Header from "./Header.js"
 import Main from "./Main.js"
 import MovieInfo from "./MovieInfo.js"
 import Session from "./Session.js";
+import SuccessfulBuy from "./SuccessfulBuy.js";
 import "./assets/css/reset.css";
 import "./assets/css/styles.css";
 
 
 export default function App(){
-    const [idFilme, setIdFilme] = React.useState('')
-    const [idSession, setIdSession] = React.useState('')
+    const [cartItens, setCartItens] = React.useState({
+    })
     return (
         <BrowserRouter>
-            <Header/>
-            <div className="container">
+            <Header cartItens={cartItens}/>
+            
             <Routes>
-                <Route path="/" element={<Main setIdFilme={setIdFilme}/>}/>
-                <Route path={`/filme/${idFilme}`} element={<MovieInfo idFilme={idFilme} setIdSession={setIdSession}/>}/>
-                <Route path={`/sessao/${idSession}`} element={<Session idSession={idSession}/>}/>
-                {/* <Route path="/sucesso" element={}/> */}
+                <Route path="/" element={<Main/>}/>
+                <Route path="/filme/:idMovie" element={<MovieInfo />}/>
+                <Route path="/sessao/:idSession" element={<Session cartItens={cartItens} setCartItens={setCartItens}/>}/>
+                <Route path="/sucesso" element={<SuccessfulBuy cartItens={cartItens}/>}/>
             </Routes>
-            </div>
+            
         </BrowserRouter>
     )
 }
