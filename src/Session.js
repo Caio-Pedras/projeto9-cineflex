@@ -5,24 +5,36 @@ import BuyInput from "./BuyInput";
 import Footer from "./Footer";
 import Seat  from "./Seat";
 import styled from 'styled-components';
-export default function Session ({setCartItens, cartItens}) {
+export default function Session ({setCartItens, cartItens, setMovie}) {
     const {idSession} = useParams()
     const URL = `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`;
+    const postURL= 'https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many';
     const [API_SEAT, setAPI_SEAT] = React.useState('')
     const [seatArray, setSeatArray] = React.useState([])
     const [name, setName] = React.useState('')
     const [cpf, setCPF] = React.useState('')
     function loadPage(response){
         setAPI_SEAT(response.data)
+        setMovie({
+            movieTitle: response.data.movie.title,
+            movieTime:response.data.name,
+            movieDay:response.data.day.date
+        })
         setSeatArray([])
         setCartItens({})
     }
     function buyTickets (){
         setCartItens({
-            ids:seatArray,
+            ids:seatArray.map((element)=>element%50),
             name:name,
             cpf:cpf,
         })
+        const postItens = {
+            ids:seatArray,
+            name:name,
+            cpf:cpf,
+        }
+       axios.post(postURL, postItens).then()
     }
     React.useEffect(()=>{axios.get(URL).then((response)=>loadPage(response))},[])
     if (API_SEAT==="") return<div className="loading"></div>
@@ -30,8 +42,8 @@ export default function Session ({setCartItens, cartItens}) {
         <Container> 
         <h2>Selecione o(s) assento(s)</h2>
         <Seats>
-                {API_SEAT.seats.map(({name, isAvailable}, i)=>
-                  <Seat name={name} seatArray={seatArray} setSeatArray={setSeatArray} isAvailable={isAvailable} key={i} />
+                {API_SEAT.seats.map(({name, isAvailable, id})=>
+                  <Seat name={name} id={id} seatArray={seatArray} setSeatArray={setSeatArray} isAvailable={isAvailable} key={id} />
                 )}
         </Seats>
         <Captions>

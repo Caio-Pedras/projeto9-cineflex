@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 import React from "react"
-export default function Seat ({isAvailable, name, seatArray, setSeatArray}){
+export default function Seat ({isAvailable, name, seatArray, setSeatArray,id}){
     const [selectedColor, setSelectedColor] = React.useState(null)
     const [selectedBorder, setSelectedBorder] = React.useState(null)
-    function selectSeat(name){
+    function selectSeat(id, isAvailable){
         if (selectedColor === null && isAvailable === true){
             setSelectedColor('#8DD7CF')
             setSelectedBorder('1px solid #1AAE9E')
-            setSeatArray([...seatArray, name])
+            setSeatArray([...seatArray, id])
         } else{
             setSelectedColor(null)
             setSelectedBorder(null)
-            setSeatArray(seatArray.filter((seatArray)=> seatArray!==name))
+            setSeatArray(seatArray.filter((seatArray)=> seatArray!==id))
         }
     }
    
@@ -19,7 +19,7 @@ export default function Seat ({isAvailable, name, seatArray, setSeatArray}){
         <Circle 
         color={(isAvailable )  ? (selectedColor):("#FBE192")} 
         border ={(isAvailable )  ? (selectedBorder):("1px solid #F7C52B")}
-        onClick={()=>selectSeat(name, isAvailable)}
+        onClick={()=>selectSeat(id, isAvailable)}
         >
             <p>{name}</p>
         </Circle>

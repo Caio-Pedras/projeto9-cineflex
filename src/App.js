@@ -10,8 +10,8 @@ import "./assets/css/styles.css";
 
 
 export default function App(){
-    const [cartItens, setCartItens] = React.useState({
-    })
+    const [cartItens, setCartItens] = React.useState({})
+    const [movie, setMovie] = React.useState({})
     return (
         <BrowserRouter>
             <Header cartItens={cartItens}/>
@@ -19,8 +19,8 @@ export default function App(){
             <Routes>
                 <Route path="/" element={<Main/>}/>
                 <Route path="/filme/:idMovie" element={<MovieInfo />}/>
-                <Route path="/sessao/:idSession" element={<Session cartItens={cartItens} setCartItens={setCartItens}/>}/>
-                <Route path="/sucesso" element={<SuccessfulBuy cartItens={cartItens}/>}/>
+                <Route path="/sessao/:idSession" element={<Session cartItens={cartItens} setCartItens={setCartItens} setMovie={setMovie}/>}/>
+                <Route path="/sucesso" element={<SuccessfulBuy cartItens={cartItens} movie={movie}/>}/>
             </Routes>
             
         </BrowserRouter>
