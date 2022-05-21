@@ -10,7 +10,10 @@ export default function MovieInfo () {
     const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`;
     const [API_MOVIE, setAPI_MOVIE] = React.useState('')
     React.useEffect(()=>{axios.get(URL).then((response)=>setAPI_MOVIE(response.data))},[])
-    if (API_MOVIE==="") return<div className="loading"></div>
+    if (API_MOVIE==="") return(
+        <Container> 
+            <Loading></Loading>
+        </Container> )
     return(
         <Container> 
         <h2 >Selecione o horário</h2>
@@ -74,4 +77,19 @@ align-items: center;
 justify-content: center;
 margin-right: 20px;
 border-radius: 5px;
+`
+const Loading = styled.div `
+animation: is-rotating 1s infinite;
+width: 100px;
+height: 100px;
+border: 10px solid gray;
+border-top-color: #E8833A;
+border-radius: 50%;
+margin-top:35vh;
+@keyframes is-rotating { 
+  
+    to {
+        transform: rotate(1turn);
+    }
+}
 `

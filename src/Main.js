@@ -9,7 +9,10 @@ const URL = 'https://mock-api.driven.com.br/api/v5/cineflex/movies';
 export default function Main () {
     const [API_MOVIES, setAPI_MOVIES] = React.useState('')
     React.useEffect(()=>{axios.get(URL).then((response)=>setAPI_MOVIES(response.data))},[])
-    if (API_MOVIES==="") return<div className="loading"></div>
+    if (API_MOVIES==="") return(
+    <Container>
+    <Loading></Loading>
+    </Container>)
     return (
         <Container>  
             <h2>Selecione o filme</h2>
@@ -66,5 +69,20 @@ img{
     width: 130px;
     height: 200px;
     border-radius: 10px;
+}
+`
+const Loading = styled.div `
+animation: is-rotating 1s infinite;
+width: 100px;
+height: 100px;
+border: 10px solid gray;
+border-top-color: #E8833A;
+border-radius: 50%;
+margin-top:35vh;
+@keyframes is-rotating { 
+  
+    to {
+        transform: rotate(1turn);
+    }
 }
 `

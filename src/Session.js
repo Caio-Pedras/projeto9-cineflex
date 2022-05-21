@@ -37,7 +37,11 @@ export default function Session ({setCartItens, cartItens, setMovie}) {
        axios.post(postURL, postItens).then()
     }
     React.useEffect(()=>{axios.get(URL).then((response)=>loadPage(response))},[])
-    if (API_SEAT==="") return<div className="loading"></div>
+    if (API_SEAT==="") return(
+    <Container> 
+        <Loading></Loading>
+    </Container> 
+    )
     return (
         <Container> 
         <h2>Selecione o(s) assento(s)</h2>
@@ -152,4 +156,18 @@ const BuySeat = styled.div`
     margin-top: 20px;
     margin-bottom: 30px;
 `
-
+const Loading = styled.div `
+animation: is-rotating 1s infinite;
+width: 100px;
+height: 100px;
+border: 10px solid gray;
+border-top-color: #E8833A;
+border-radius: 50%;
+margin-top:35vh;
+@keyframes is-rotating { 
+  
+    to {
+        transform: rotate(1turn);
+    }
+}
+`
