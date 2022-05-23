@@ -20,7 +20,7 @@ export default function Header ({displayButton}) {
             </Link>
         </HeaderWrap>
             <Content display={displayButton? ('inherit'): ('none')} onClick={()=>navigate(-1)}>
-            <img onClick={()=>console.log(displayButton)} src={BackButton} alt="Botão de retorno"/>
+            <img src={BackButton} alt="Botão de retorno"/>
             </Content>
         </>
     )

@@ -28,4 +28,7 @@ margin-bottom: 20px;
  p {
     margin-bottom: 10px;
 }
+input {
+    margin-bottom:10px;
+}
 `

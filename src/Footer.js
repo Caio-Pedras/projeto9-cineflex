@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export default function Footer ({movieIMG, movieTitle, movieTimeDay}){
     return(
-        <footer>
+        <FooterWrap>
             <Movie>
                 <img src={movieIMG} alt={movieTitle} />
             </Movie>
@@ -9,9 +9,26 @@ export default function Footer ({movieIMG, movieTitle, movieTimeDay}){
                 <p>{movieTitle}</p>
                 <p>{movieTimeDay}</p>
             </Text>
-        </footer>
+        </FooterWrap>
     )
 }
+const FooterWrap = styled.div`
+    border-top: 1px solid #9EADBA;
+    background-color: #DFE6ED;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    color: #293845;
+`
 const Movie = styled.div`
 background-color: #FFFFFF;
 box-shadow: 0px 2px 4px 2px #0000001A;
