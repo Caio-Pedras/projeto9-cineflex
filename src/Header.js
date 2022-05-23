@@ -11,9 +11,9 @@ export default function Header ({displayButton}) {
             <h1>CINEFLEX</h1>
             </Link>
         </HeaderWrap>
-            <Content display={displayButton? ('inherit'): ('none')} onClick={()=>navigate(-1)}>
+            <Button display={displayButton? ('inherit'): ('none')} onClick={()=>navigate(-1)}>
             <img src={BackButton} alt="Botão de retorno"/>
-            </Content>
+            </Button>
         </>
     )
 }
@@ -32,7 +32,7 @@ left: 0;
 height: 80px;
 z-index: 1;
 ` 
-const Content = styled.div`
+const Button = styled.div`
 position: fixed;
 top:16px;
 left: 10px;
