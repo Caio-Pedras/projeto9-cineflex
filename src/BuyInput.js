@@ -16,7 +16,7 @@ export default function BuyInput ({id, index, setBuyers, buyers}){
                 {...buyer,
                 nome: e.target.value})}/>
                 <p>CPF do comprador:</p>
-                <input type="text" placeholder={`'CPF do comprador...`} onChange={(e)=>setBuyer(
+                <input type="text" placeholder={`CPF do comprador...`} onChange={(e)=>setBuyer(
                 {...buyer,
                 cpf: e.target.value
                 })}/>
