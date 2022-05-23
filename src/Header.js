@@ -4,14 +4,6 @@ import React from "react"
 import styled from 'styled-components';
 export default function Header ({displayButton}) {
     const navigate = useNavigate()
-    // if ({displayButton} === false){
-    //     return (
-    //         <HeaderWrap>
-    //             <h1>CINEFLEX</h1> 
-    //         </HeaderWrap>
-
-    //     )
-    // }
     return (
         <>
         <HeaderWrap>

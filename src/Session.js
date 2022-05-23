@@ -18,12 +18,12 @@ export default function Session ({setCartItens, setMovie, setDisplayButton}) {
     function loadPage(response){
         setAPI_SEAT(response.data)
         setMovie({
-            movieTitle: response.data.movie.title,
+            movieTitle:response.data.movie.title,
             movieTime:response.data.name,
             movieDay:response.data.day.date
         })
         setSeatArray([])
-        setCartItens({})
+        setCartItens('')
     }
     function onlyNumbers(str) {
         return /^[0-9]+$/.test(str);
