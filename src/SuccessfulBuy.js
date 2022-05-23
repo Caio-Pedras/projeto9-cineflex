@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-export default function SuccessfulBuy ({cartItens, movie}){
+export default function SuccessfulBuy ({cartItens, movie, setDisplayButton}){
+    setDisplayButton(true)
+    if (cartItens === '' || movie === '') {return <></>}
     return (
     <Container> 
         <h2>Pedido feito com sucesso!</h2>
@@ -12,14 +14,18 @@ export default function SuccessfulBuy ({cartItens, movie}){
         </Box>
         <Box>
             <h3>Ingressos</h3>
-            {cartItens.ids.map((info,i)=>
-            <p key = {i}>Assento {info}</p>
+            {cartItens.map(({idAssento},i)=>
+            <p key = {i}>Assento {idAssento%50}</p>
         )}
         </Box>
         <Box>
             <h3>Comprador</h3>
-            <p>{cartItens.name}</p>
-            <p>{cartItens.cpf}</p>
+            {cartItens.map(({nome,cpf},i)=>
+            <div key={i}>
+            <p>{nome}</p>
+            <p>{cpf}</p>
+            </div>
+            )}
         </Box>
         <Link to='/'>
         <Button><p>Voltar para a Home</p></Button> 
@@ -57,6 +63,7 @@ const Box = styled.div`
     font-size:22px;
     font-weight:400;
     margin-bottom:10px;
+    word-break: break-all;
     }
     `
     const Button = styled.div`

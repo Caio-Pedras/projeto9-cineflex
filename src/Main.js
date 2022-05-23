@@ -3,11 +3,12 @@ import axios from "axios";
 import react from "react";
 import styled from 'styled-components';
 import { useEffect } from "react/cjs/react.production.min";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 const URL = 'https://mock-api.driven.com.br/api/v5/cineflex/movies';
 
-export default function Main () {
+export default function Main ({setDisplayButton}) {
     const [API_MOVIES, setAPI_MOVIES] = React.useState('')
+    setDisplayButton(false)
     React.useEffect(()=>{axios.get(URL).then((response)=>setAPI_MOVIES(response.data))},[])
     if (API_MOVIES==="") return(
     <Container>
@@ -19,9 +20,9 @@ export default function Main () {
             <MovieList>
                 {API_MOVIES.map(({title, posterURL, id})=>
                     <Link to={`/filme/${id}`} key={id}>
-                    <Movie>
-                        <img  src={posterURL} alt={title} />
-                    </Movie>
+                        <Movie>
+                            <img  src={posterURL} alt={title} />
+                        </Movie>
                     </Link>
                 )}
             </MovieList>

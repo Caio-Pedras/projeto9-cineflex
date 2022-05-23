@@ -10,17 +10,19 @@ import "./assets/css/styles.css";
 
 
 export default function App(){
-    const [cartItens, setCartItens] = React.useState({})
-    const [movie, setMovie] = React.useState({})
+    const [cartItens, setCartItens] = React.useState('')
+    const [movie, setMovie] = React.useState('')
+    const [displayButton, setDisplayButton] = React.useState(false)
+
     return (
         <BrowserRouter>
-            <Header cartItens={cartItens}/>
+            <Header displayButton={displayButton}/>
             
             <Routes>
-                <Route path="/" element={<Main/>}/>
-                <Route path="/filme/:idMovie" element={<MovieInfo />}/>
-                <Route path="/sessao/:idSession" element={<Session cartItens={cartItens} setCartItens={setCartItens} setMovie={setMovie}/>}/>
-                <Route path="/sucesso" element={<SuccessfulBuy cartItens={cartItens} movie={movie}/>}/>
+                <Route path="/" element={<Main setDisplayButton={setDisplayButton}/>} />
+                <Route path="/filme/:idMovie" element={<MovieInfo setDisplayButton={setDisplayButton}/>}/>
+                <Route path="/sessao/:idSession" element={<Session setCartItens={setCartItens} setMovie={setMovie} setDisplayButton={setDisplayButton} />}/>
+                <Route path="/sucesso" element={<SuccessfulBuy cartItens={cartItens} movie={movie} setDisplayButton={setDisplayButton}/>}/>
             </Routes>
             
         </BrowserRouter>

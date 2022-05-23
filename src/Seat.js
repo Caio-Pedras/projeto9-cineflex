@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import React from "react"
-export default function Seat ({isAvailable, name, seatArray, setSeatArray,id}){
+export default function Seat ({isAvailable, name, seatArray, setSeatArray,id, buyers, setBuyers }){
     const [selectedColor, setSelectedColor] = React.useState(null)
     const [selectedBorder, setSelectedBorder] = React.useState(null)
     function selectSeat(id, isAvailable){
-        if (selectedColor === null && isAvailable === true){
+        if (isAvailable === false) alert("Esse assento não está disponível");
+        else if (selectedColor === null && isAvailable === true){
             setSelectedColor('#8DD7CF')
             setSelectedBorder('1px solid #1AAE9E')
             setSeatArray([...seatArray, id])
@@ -12,6 +13,7 @@ export default function Seat ({isAvailable, name, seatArray, setSeatArray,id}){
             setSelectedColor(null)
             setSelectedBorder(null)
             setSeatArray(seatArray.filter((seatArray)=> seatArray!==id))
+            setBuyers(buyers.filter((obj)=>obj.idAssento !==id))
         }
     }
    

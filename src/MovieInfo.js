@@ -1,15 +1,19 @@
 import React from 'react'
 import axios from "axios";
-import { Link, useParams  } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 import Footer from './Footer.js'
 import styled from 'styled-components';
 
 
-export default function MovieInfo () {
+export default function MovieInfo ({setDisplayButton}) {
     const {idMovie} = useParams();
+    setDisplayButton(true)
     const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`;
     const [API_MOVIE, setAPI_MOVIE] = React.useState('')
-    React.useEffect(()=>{axios.get(URL).then((response)=>setAPI_MOVIE(response.data))},[])
+    React.useEffect(()=>{axios.get(URL)
+        .then((response)=>setAPI_MOVIE(response.data))
+        .catch(()=>alert('esse filme não existe, escolha outro'))
+    },[])
     if (API_MOVIE==="") return(
         <Container> 
             <Loading></Loading>

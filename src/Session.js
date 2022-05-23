@@ -1,18 +1,20 @@
 import React from "react"
-import { Link, useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 import BuyInput from "./BuyInput";
 import Footer from "./Footer";
 import Seat  from "./Seat";
 import styled from 'styled-components';
-export default function Session ({setCartItens, cartItens, setMovie}) {
+export default function Session ({setCartItens, setMovie, setDisplayButton}) {
+    setDisplayButton(true)
     const {idSession} = useParams()
     const URL = `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`;
     const postURL= 'https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many';
     const [API_SEAT, setAPI_SEAT] = React.useState('')
     const [seatArray, setSeatArray] = React.useState([])
-    const [name, setName] = React.useState('')
-    const [cpf, setCPF] = React.useState('')
+    const [buyers, setBuyers] = React.useState([])
+    const navigate = useNavigate()
+    
     function loadPage(response){
         setAPI_SEAT(response.data)
         setMovie({
@@ -23,20 +25,33 @@ export default function Session ({setCartItens, cartItens, setMovie}) {
         setSeatArray([])
         setCartItens({})
     }
+    function onlyNumbers(str) {
+        return /^[0-9]+$/.test(str);
+      }
     function buyTickets (){
-        setCartItens({
-            ids:seatArray.map((element)=>element%50),
-            name:name,
-            cpf:cpf,
-        })
+        setCartItens(buyers)
         const postItens = {
             ids:seatArray,
-            name:name,
-            cpf:cpf,
+            compradores: buyers,
         }
-       axios.post(postURL, postItens).then()
+        let validatePost = true
+        if (seatArray.length === 0) validatePost=false
+        {buyers.map((obj,i)=>{
+            if (Object.keys(obj).length !== 3 || obj.cpf.length !== 11){validatePost = false;}
+            let check = onlyNumbers(obj.cpf)
+            if (check === false) {validatePost= false}
+            }
+            )}
+            if (validatePost === false){
+                alert('preencha os dados corretamente')
+            } else {
+            axios.post(postURL, postItens).then(()=>navigate('/sucesso'))
+        }
     }
-    React.useEffect(()=>{axios.get(URL).then((response)=>loadPage(response))},[])
+    React.useEffect(()=>{axios.get(URL)
+        .then((response)=>loadPage(response))
+        .catch(()=>alert('essa sessão não existe, escolha outra'))
+    },[])
     if (API_SEAT==="") return(
     <Container> 
         <Loading></Loading>
@@ -47,7 +62,7 @@ export default function Session ({setCartItens, cartItens, setMovie}) {
         <h2>Selecione o(s) assento(s)</h2>
         <Seats>
                 {API_SEAT.seats.map(({name, isAvailable, id})=>
-                  <Seat name={name} id={id} seatArray={seatArray} setSeatArray={setSeatArray} isAvailable={isAvailable} key={id} />
+                  <Seat name={name} id={id} seatArray={seatArray} setSeatArray={setSeatArray} buyers={buyers} setBuyers={setBuyers} isAvailable={isAvailable} key={id} />
                 )}
         </Seats>
         <Captions>
@@ -64,13 +79,17 @@ export default function Session ({setCartItens, cartItens, setMovie}) {
                 <p>Indisponível</p>
             </Caption>  
         </Captions>
-        <BuyInfo>
-            <BuyInput inputName='Nome do comprador' placeholder='Digite seu nome' setType={setName} />
-            <BuyInput inputName='CPF do comprador' placeholder='Digite seu CPF' setType={setCPF}/>
-        </BuyInfo>
-        <Link to='/sucesso'>
+        
+        {seatArray.map((id, index) =>
+            <BuyInfo key={index}>
+                <h3>Assento {id%50}</h3>
+                <BuyInput id={id} index={index} setBuyers={setBuyers} buyers={buyers}/>
+            </BuyInfo>
+            )}
+        
+        
             <BuySeat onClick={buyTickets}><p>Reservar assento(s)</p></BuySeat>
-        </Link>
+      
         <Footer movieIMG={API_SEAT.movie.posterURL} movieTitle={API_SEAT.movie.title} movieTimeDay={`${API_SEAT.day.weekday} - ${API_SEAT.name}`} />
         </Container>
     )
@@ -141,6 +160,10 @@ input{
     border: 1px solid #D4D4D4;
     padding: 0 20px;
     font-size: 18px;
+}
+h3 {
+    font-weight:700;
+    margin-bottom:10px;
 }
 `
 const BuySeat = styled.div`
